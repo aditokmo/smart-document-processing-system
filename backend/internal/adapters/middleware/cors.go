@@ -2,14 +2,19 @@ package middleware
 
 import (
 	"net/http"
-	"strings"
 )
 
 func CORS(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		origin := r.Header.Get("Origin")
 
-		if strings.HasPrefix(origin, "http://localhost:") || strings.HasPrefix(origin, "http://127.0.0.1:") {
+		allowedOrigins := map[string]bool{
+			"http://localhost:5173": true,
+			"http://127.0.0.1:5173": true,
+			"https://smart-document-processing-system-nine.vercel.app": true,
+		}
+
+		if allowedOrigins[origin] {
 			w.Header().Set("Access-Control-Allow-Origin", origin)
 		}
 

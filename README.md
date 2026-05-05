@@ -72,7 +72,7 @@ make dev
 ```
 
 Then open:
-- Frontend: http://localhost:5174
+- Frontend: http://localhost:5173
 - Backend API: http://localhost:8080
 - Swagger Docs: http://localhost:8080/swagger
 

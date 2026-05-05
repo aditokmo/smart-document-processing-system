@@ -30,7 +30,7 @@ dev: db-up
 	@echo "Starting Smart Document Processing System..."
 	@echo ""
 	@echo "Starting backend on http://localhost:8080"
-	@echo "Starting frontend on http://localhost:5174"
+	@echo "Starting frontend on http://localhost:5173"
 	@echo "Database: PostgreSQL on localhost:5432"
 	@echo ""
 	@echo "Press Ctrl+C to stop all services"
@@ -46,7 +46,7 @@ start: db-up
 	@echo "Starting Smart Document Processing System..."
 	@echo ""
 	@echo "Starting backend on http://localhost:8080"
-	@echo "Starting frontend on http://localhost:5174"
+	@echo "Starting frontend on http://localhost:5173"
 	@echo "Database: PostgreSQL on localhost:5432"
 	@echo ""
 	@echo "Press Ctrl+C to stop all services"
@@ -79,7 +79,7 @@ backend:
 	cd backend && go run cmd/server/main.go
 
 frontend:
-	@echo "Starting frontend dev server on http://localhost:5174"
+	@echo "Starting frontend dev server on http://localhost:5173"
 	cd frontend && pnpm dev
 
 stop:
