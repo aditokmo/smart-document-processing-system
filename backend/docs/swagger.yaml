@@ -1,0 +1,236 @@
+basePath: /api/v1
+definitions:
+  model.Document:
+    properties:
+      created_at:
+        type: string
+      currency:
+        type: string
+      document_number:
+        type: string
+      filename:
+        type: string
+      due_date:
+        type: string
+      id:
+        type: string
+      issue_date:
+        type: string
+      issues:
+        items:
+          $ref: '#/definitions/model.ValidationIssue'
+        type: array
+      line_items:
+        items:
+          $ref: '#/definitions/model.LineItem'
+        type: array
+      status:
+        $ref: '#/definitions/model.DocumentStatus'
+      subtotal:
+        type: number
+      supplier_name:
+        type: string
+      tax:
+        type: number
+      total:
+        type: number
+      type:
+        $ref: '#/definitions/model.DocumentType'
+      updated_at:
+        type: string
+    type: object
+  model.DocumentStatus:
+    enum:
+    - uploaded
+    - needs_review
+    - validated
+    - rejected
+    type: string
+    x-enum-varnames:
+    - StatusUploaded
+    - StatusNeedsReview
+    - StatusValidated
+    - StatusRejected
+  model.DocumentType:
+    enum:
+    - invoice
+    - purchase_order
+    type: string
+    x-enum-varnames:
+    - TypeInvoice
+    - TypePurchaseOrder
+  model.LineItem:
+    properties:
+      description:
+        type: string
+      quantity:
+        type: integer
+      total:
+        type: number
+      price:
+        type: number
+    type: object
+  model.UpdateDocumentRequest:
+    properties:
+      type:
+        $ref: '#/definitions/model.DocumentType'
+      supplier_name:
+        type: string
+      document_number:
+        type: string
+      issue_date:
+        type: string
+      due_date:
+        type: string
+      currency:
+        type: string
+      line_items:
+        type: array
+        items:
+          $ref: '#/definitions/model.LineItem'
+      subtotal:
+        type: number
+      tax:
+        type: number
+      total:
+        type: number
+    type: object
+  model.ApproveDocumentRequest:
+    properties:
+      corrections:
+        $ref: '#/definitions/model.UpdateDocumentRequest'
+    type: object
+  model.ValidationIssue:
+    properties:
+      field:
+        type: string
+      message:
+        type: string
+    type: object
+externalDocs:
+  description: OpenAPI
+  url: https://swagger.io/resources/open-api/
+host: localhost:8080
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: A system for processing business documents with data extraction and
+    validation
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Smart Document Processing System API
+  version: "1.0"
+paths:
+  /documents:
+    get:
+      description: Get all documents
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.Document'
+            type: array
+      summary: Get documents
+    post:
+      consumes:
+      - multipart/form-data
+      description: Upload and process a document file
+      parameters:
+      - description: Document file
+        in: formData
+        name: file
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Document'
+      summary: Upload a document
+  /documents/{id}:
+    get:
+      description: Get document details by ID
+      parameters:
+      - description: Document ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Document'
+      summary: Get a document
+    put:
+      consumes:
+      - application/json
+      description: Update document details
+      parameters:
+      - description: Document ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Document data
+        in: body
+        name: document
+        required: true
+        schema:
+          $ref: '#/definitions/model.UpdateDocumentRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Document'
+      summary: Update a document
+  /documents/{id}/approve:
+    post:
+      consumes:
+      - application/json
+      description: Approve a document
+      parameters:
+      - description: Document ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Optional corrections
+        in: body
+        name: corrections
+        required: false
+        schema:
+          $ref: '#/definitions/model.ApproveDocumentRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Approve a document
+  /documents/{id}/reject:
+    post:
+      description: Reject a document
+      parameters:
+      - description: Document ID
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+      summary: Reject a document
+swagger: "2.0"
