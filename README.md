@@ -26,6 +26,7 @@ Built with a custom **React CLI** ([`@aditokmo/create-react-project`](https://ww
 ## Improvements I would make
 
 - Refining the UI and cleaning up the React codebase, as the initial version was built with a free GitHub Copilot agent
+- Adding rate limiter
 - Adding support for image formats (that I will probably do in couple days)
 - Supporting multi-file upload once the UX flow is properly planned out
 - Continued testing to surface and fix any remaining bugs in the system if they exist
@@ -37,6 +38,7 @@ Built with a custom **React CLI** ([`@aditokmo/create-react-project`](https://ww
 - Generating Swagger documentation and README docs
 - Reviewing backend logic to catch anything I may have missed, and for occasional syntax guidance since I am still learning Go
 - Setting up Docker and Makefile configuration to make it easier for others to run the project locally
+- Generating Regex for data validation
 
 ## API Endpoints
 
