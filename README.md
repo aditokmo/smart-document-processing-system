@@ -25,7 +25,7 @@ Built with a custom **React CLI** ([`@aditokmo/create-react-project`](https://ww
 
 ## Improvements I would make
 
-- Refining the UI and cleaning up the React codebase, as the initial version was scaffolded with a free GitHub Copilot agent
+- Refining the UI and cleaning up the React codebase, as the initial version was built with a free GitHub Copilot agent
 - Adding support for image formats (that I will probably do in couple days)
 - Supporting multi-file upload once the UX flow is properly planned out
 - Continued testing to surface and fix any remaining bugs in the system if they exist
