@@ -23,6 +23,21 @@ Follows **Clean Architecture** with a hexagonal architecture design, separating 
 ### Frontend
 Built with a custom **React CLI** ([`@aditokmo/create-react-project`](https://www.npmjs.com/package/@aditokmo/create-react-project)) that builds a feature-based, pre-configured architecture. Development was done  by a **GitHub Copilot** local agent configured with a custom ruleset to enforce consistency across the codebase.
 
+## Improvements I would make
+
+- Refining the UI and cleaning up the React codebase, as the initial version was scaffolded with a free GitHub Copilot agent
+- Adding support for image formats (that I will probably do in couple days)
+- Supporting multi-file upload once the UX flow is properly planned out
+- Continued testing to surface and fix any remaining bugs in the system if they exist
+- Adding upload validation to prevent confusion around submitting multiple files before multi-upload is fully supported
+
+## AI Usage
+
+- Building the frontend by combining my custom React CLI, which builds the full folder structure with pre-configured libraries, and GitHub Copilot Agents to generate code following that structure and the rules I defined through prompts
+- Generating Swagger documentation and README docs
+- Reviewing backend logic to catch anything I may have missed, and for occasional syntax guidance since I am still learning Go
+- Setting up Docker and Makefile configuration to make it easier for others to run the project locally
+
 ## API Endpoints
 
 - `POST /documents` - Upload and process a document
