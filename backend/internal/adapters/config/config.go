@@ -65,7 +65,7 @@ func (c DatabaseConfig) ConnectionURL() string {
 func Load() (*Config, error) {
 	_ = godotenv.Load()
 
-	dbURL := os.Getenv("DB_URL")
+	dbURL := os.Getenv("DATABASE_URL")
 
 	return &Config{
 		Port: getEnv("PORT", "8080"),
