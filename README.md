@@ -17,19 +17,18 @@ System that processes real-world business documents (invoices and purchase order
 ### Backend
 Follows **Clean Architecture** with a hexagonal architecture design, separating concerns into two layers:
 
-- **Domain** — core business logic, models, and validation rules with no external dependencies
-- **Adapters** — all external concerns including HTTP handlers, PostgreSQL persistence, file processing, and database migrations
+- **Domain** - core business logic, models, and validation rules with no external dependencies
+- **Adapters** - all external concerns including HTTP handlers, PostgreSQL persistence, file processing, and database migrations
 
 ### Frontend
 Built with a custom **React CLI** ([`@aditokmo/create-react-project`](https://www.npmjs.com/package/@aditokmo/create-react-project)) that builds a feature-based, pre-configured architecture. Development was done  by a **GitHub Copilot** local agent configured with a custom ruleset to enforce consistency across the codebase.
 
-## Improvements I would make
+## Improvements I need to make
 
 - Refining the UI and cleaning up the React codebase, as the initial version was built with a free GitHub Copilot agent
 - Adding rate limiter
-- Adding support for image formats (that I will probably do in couple days)
+- Adding support for image formats
 - Supporting multi-file upload once the UX flow is properly planned out
-- Continued testing to surface and fix any remaining bugs in the system if they exist
 - Adding upload validation to prevent confusion around submitting multiple files before multi-upload is fully supported
 
 ## AI Usage
